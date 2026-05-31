@@ -1,0 +1,12 @@
+version: 2-1
+jobs:
+  build:
+    docker:
+      - image:cing/node:18.18  # modern Node 18
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
